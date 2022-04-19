@@ -1,7 +1,7 @@
 steps:
 - name: bash
   entrypoint: "bash"
-  args: ['-c', 'echo PG_HOST=$$PG_HOST_SECRET >> ./.env']
+  args: ['-c', 'echo PG_HOST=$$PG_HOST_SECRET > ./.env']
   secretEnv: ['PG_HOST_SECRET']
 
 - name: bash
