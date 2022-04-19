@@ -39,7 +39,7 @@ steps:
   - --min-instances=0
   - --max-instances=1
   - --memory=128Mi
-  - --port=5000
+  - --port=8080
   - --add-cloudsql-instances=crypto-arbitrage-347617:us-central1:main
   - --ingress=all
   # - --vpc-connector=default-vpc-connector
