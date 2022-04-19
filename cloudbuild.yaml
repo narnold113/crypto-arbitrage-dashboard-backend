@@ -18,16 +18,34 @@ steps:
   entrypoint: "bash"
   args: ['-c', 'echo PG_PORT=5432 >> ./.env']
 
-- name: bash
-  entrypoint: "bash"
-  args: ['-c', 'echo PORT=5000 >> ./.env']
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/crypto-arbitrage-dashboard-backend:latest', '.' ]
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/crypto-arbitrage-dashboard-backend:1.0', '.' ]
+  args: ['push', 'gcr.io/$PROJECT_ID/crypto-arbitrage-dashboard-backend:latest']
 
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/$PROJECT_ID/crypto-arbitrage-dashboard-backend:1.0']
+# - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+#   entrypoint: gcloud
+#   args: ['run', 'deploy', 'crypto-arbitrage-dashboard-backend', '--image', 'gcr.io/$PROJECT_ID/crypto-arbitrage-dashboard-backend:1.0', '--region', 'us-central1', '--vpc-connector', 'default-vpc-connector']
 
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args:
+  - run
+  - deploy
+  - crypto-arbitrage-dashboard-backend
+  - --image=gcr.io/$PROJECT_ID/crypto-arbitrage-dashboard-backend:latest
+  - --region=us-central1
+  - --min-instances=0
+  - --max-instances=1
+  - --memory=128Mi
+  - --port=5000
+  - --set-cloudsql-instances=[crypto-arbitrage-347617:us-central1:main]
+  - --ingress=all
+  # - --vpc-connector=default-vpc-connector
+
+images:
+- gcr.io/$PROJECT_ID/crypto-arbitrage-dashboard-backend:latest
 
 availableSecrets:
   secretManager:
