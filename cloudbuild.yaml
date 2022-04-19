@@ -40,7 +40,7 @@ steps:
   - --max-instances=1
   - --memory=128Mi
   - --port=5000
-  - --set-cloudsql-instances=[crypto-arbitrage-347617:us-central1:main]
+  - --add-cloudsql-instances=crypto-arbitrage-347617:us-central1:main
   - --ingress=all
   # - --vpc-connector=default-vpc-connector
 
