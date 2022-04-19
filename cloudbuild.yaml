@@ -49,9 +49,10 @@ steps:
   - --max-instances=1
   - --memory=128Mi
   - --port=8080
-  - --add-cloudsql-instances=crypto-arbitrage-347617:us-central1:main
+  - --add-cloudsql-instances=$$PG_INSTANCE_NAME_SECRET
   - --allow-unauthenticated
   # - --vpc-connector=default-vpc-connector
+  secretEnv: ['PG_INSTANCE_NAME_SECRET']
 
 images:
 - gcr.io/$PROJECT_ID/crypto-arbitrage-dashboard-backend:latest
