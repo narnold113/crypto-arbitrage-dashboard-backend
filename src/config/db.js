@@ -1,3 +1,4 @@
+require('dotenv').config()
 const Sequelize = require('sequelize')
 
 module.exports =  new Sequelize('main', process.env.PG_USER, process.env.PG_PASSWORD, {
