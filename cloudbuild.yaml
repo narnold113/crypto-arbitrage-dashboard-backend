@@ -49,7 +49,7 @@ steps:
   - --max-instances=1
   - --memory=128Mi
   - --port=8080
-  - --add-cloudsql-instances=$$PG_INSTANCE_NAME_SECRET
+  - --add-cloudsql-instances='$$PG_INSTANCE_NAME_SECRET'
   - --allow-unauthenticated
   # - --vpc-connector=default-vpc-connector
   secretEnv: ['PG_INSTANCE_NAME_SECRET']
