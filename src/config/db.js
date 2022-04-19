@@ -9,7 +9,7 @@ if (process.env.IS_CLOUD) {
     port: process.env.PG_PORT,
     dialect: 'postgres',
     dialectOptions: {
-      socketPath: `${dbSocketPath}/${process.env.INSTANCE_CONNECTION_NAME}`
+      socketPath: `${dbSocketPath}/${process.env.PG_INSTANCE_NAME}`
     },
     pool: {
       max: 5,
