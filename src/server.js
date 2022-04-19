@@ -21,6 +21,6 @@ app.use('/api/arbitrages', require('./routes/arbitrages'))
 // Orders Routes
 app.use('/api/orders', require('./routes/orders'))
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server listening on port ${PORT}`)
 })
